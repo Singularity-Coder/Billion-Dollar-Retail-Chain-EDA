@@ -1,0 +1,34 @@
+event_timestamp,app_display_version,app_build_version,os_version,device_name,country,carrier,radio_type,custom_attributes,event_type,event_name,parent_trace_name,trace_info,network_info
+2025-05-24 19:57:25.796761 UTC,1.2.35,2387,33,Samsung Galaxy A51,US,[MISSING],WIFI,"{
+  ""custom_attributes"": []
+}",DURATION_TRACE,_app_start,,"{
+  ""trace_info"": {
+    ""duration_us"": ""289019"",
+    ""screen_info"": null,
+    ""metric_info"": null
+  }
+}","{
+  ""network_info"": null
+}"
+2025-05-24 19:57:25.680000 UTC,1.2.35,2387,33,Samsung Galaxy A51,US,[MISSING],WIFI,"{
+  ""custom_attributes"": []
+}",DURATION_TRACE,APP_STARTUP,,"{
+  ""trace_info"": {
+    ""duration_us"": ""28083999"",
+    ""screen_info"": null,
+    ""metric_info"": null
+  }
+}","{
+  ""network_info"": null
+}"
+2025-05-24 22:09:40.171000 UTC,1.2.35,2387,33,Samsung Galaxy A51,US,[MISSING],WIFI,"{
+  ""custom_attributes"": []
+}",DURATION_TRACE,APP_STARTUP,,"{
+  ""trace_info"": {
+    ""duration_us"": ""6930547"",
+    ""screen_info"": null,
+    ""metric_info"": null
+  }
+}","{
+  ""network_info"": null
+}"

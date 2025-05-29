@@ -13,11 +13,12 @@
 {\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}
 {\list\listtemplateid5\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid401\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid402\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid5}}
 {\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}}
-\paperw11900\paperh16840\margl1440\margr1440\vieww12720\viewh7800\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww27880\viewh16380\viewkind0
 \deftab560
 \pard\pardeftab560\partightenfactor0
 
-\f0\b\fs40 \cf0 EDA of Billion Dollar Retail Store Outlet\
+\f0\b\fs48 \cf0 EDA of Billion Dollar Retail Store Outlet - Firebase Performance Data
+\fs40 \
 \pard\pardeftab560\partightenfactor0
 
 \f1\b0\fs26 \cf0 This is an EDA done on the Android logs of \'93Firebase Performance\'94 metrics for a Billion Dollar Retail Store Outlet.
@@ -526,13 +527,21 @@ Microseconds after event_timestamp when network response is completed. Unit: mic
 \ls1\ilvl0\cf0 \
 \pard\pardeftab560\slleading20\partightenfactor0
 \cf0 \
-Big Query Console: {\field{\*\fldinst{HYPERLINK "https://console.cloud.google.com/welcome"}}{\fldrslt https://console.cloud.google.com/welcome}}\
-\
-Big Query Documentation: {\field{\*\fldinst{HYPERLINK "https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#extract"}}{\fldrslt https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#extract}}\
-\
 \pard\pardeftab560\slleading20\partightenfactor0
 
-\f0\b\fs36 \cf0 How to setup data in BigQuery:
+\f0\b\fs36 \cf0 Big Query Console
+\f1\b0\fs26 \
+{\field{\*\fldinst{HYPERLINK "https://console.cloud.google.com/welcome"}}{\fldrslt https://console.cloud.google.com/welcome}}\
+\
+\
+
+\f0\b\fs36 Big Query Documentation 
+\f1\b0\fs26 \
+{\field{\*\fldinst{HYPERLINK "https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#extract"}}{\fldrslt https://cloud.google.com/bigquery/docs/reference/standard-sql/date_functions#extract}}\
+\
+\
+
+\f0\b\fs36 How to setup data in BigQuery:
 \f1\b0\fs26 \
 \pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
 \ls2\ilvl0\cf0 {\listtext	\uc0\u8226 	}All Firebase data is Stored in Google Cloud infrastructure.\
@@ -1178,31 +1187,32 @@ ________________________________________________________________________________
 \pard\pardeftab720\partightenfactor0
 
 \f4\fs24 \cf10 \cb5 \expnd0\expndtw0\kerning0
--- %l:%M %p\cf6 \
-\cf10 -- %I = zero-padded 12-hour (e.g., 07)\cf6 \
-\cf10 -- %l = non-padded 12-hour (e.g., 7)\cf6 \
-\cf10 -- %p = AM/PM\cf6 \
-\cf10 -- %M = minutes (always zero-padded)\cf6 \
+-- %l:%M %p\cf6 \cb1 \
+\cf10 \cb5 -- %I = zero-padded 12-hour (e.g., 07)\cf6 \cb1 \
+\cf10 \cb5 -- %l = non-padded 12-hour (e.g., 7)\cf6 \cb1 \
+\cf10 \cb5 -- %p = AM/PM\cf6 \cb1 \
+\cf10 \cb5 -- %M = minutes (always zero-padded)\cf6 \cb1 \
 \pard\pardeftab720\partightenfactor0
-\cf4 SELECT\cf6  \
-  \cf4 FORMAT_DATETIME\cf7 (\cf9 '%l %p'\cf6 , \cf4 DATETIME\cf7 (\cf6 event_timestamp\cf7 ))\cf6  \cf4 AS\cf6  `time_hr`,\
-  \cf4 COUNT\cf7 (\cf8 1\cf7 )\cf6  \cf4 AS\cf6  `count`\
-\cf4 FROM\cf6  \
-  `project---prod.firebase_performance.com_project_ANDROID`\
-\cf4 GROUP\cf6  \cf4 BY\cf6  \cf8 1\cf6 \
-\cf4 ORDER\cf6  \cf4 BY\cf6  \cf8 2\cf6  \cf4 DESC\cf6 \
+\cf4 \cb5 SELECT\cf6  \cb1 \
+\cb5   \cf4 FORMAT_DATETIME\cf7 (\cf9 '%l %p'\cf6 , \cf4 DATETIME\cf7 (\cf6 event_timestamp\cf7 ))\cf6  \cf4 AS\cf6  `time_hr`,\cb1 \
+\cb5   \cf4 EXTRACT\cf7 (\cf6 HOUR \cf4 FROM\cf6  event_timestamp\cf7 )\cf6  \cf4 AS\cf6  `time_24_hr`,\cb1 \
+\cb5   \cf4 COUNT\cf7 (*)\cf6  \cf4 AS\cf6  `count`\cb1 \
+\cf4 \cb5 FROM\cf6  \cb1 \
+\cb5   `project---prod.firebase_performance.com_project_ANDROID`\cb1 \
+\cf4 \cb5 GROUP\cf6  \cf4 BY\cf6  \cf8 1\cf6 , \cf8 2\cf6 \cb1 \
+\cf4 \cb5 ORDER\cf6  \cf4 BY\cf6  \cf8 2\cf6 \
 \pard\pardeftab720\partightenfactor0
 \cf6 \cb1 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab560\pardirnatural\partightenfactor0
 
-\f2 \cf0 \kerning1\expnd0\expndtw0 {{\NeXTGraphic Screenshot 2025-05-23 at 15.18.23.png \width15360 \height11200 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+\f2 \cf0 \kerning1\expnd0\expndtw0 {{\NeXTGraphic Screenshot 2025-05-28 at 01.35.04.png \width13560 \height11120 \appleattachmentpadding0 \appleembedtype0 \appleaqc
 }¬}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab560\pardirnatural\partightenfactor0
 
 \f1\fs26 \cf0 \
 \
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab560\pardirnatural\partightenfactor0
 
-\f2\fs24 \cf0 {{\NeXTGraphic Screenshot 2025-05-23 at 15.18.58.png \width27120 \height15760 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+\f2\fs24 \cf0 {{\NeXTGraphic Screenshot 2025-05-28 at 01.35.36.png \width25040 \height15040 \appleattachmentpadding0 \appleembedtype0 \appleaqc
 }¬}\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab560\pardirnatural\partightenfactor0
 
 \f1\fs26 \cf0 \
